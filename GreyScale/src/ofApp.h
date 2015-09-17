@@ -2,6 +2,10 @@
 
 #include "ofMain.h"
 
+#define RED 0
+#define GREEN 1
+#define BLUE 2
+
 class ofApp : public ofBaseApp{
 
 	public:
