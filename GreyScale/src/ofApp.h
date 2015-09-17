@@ -24,7 +24,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		void computeGrayScale(ofImage *img, char * path, int lev);
-		void keepRed(ofImage *img, char * path);
+		void keepRed(ofImage *img, char * path, float t);
 
 		ofImage base_tdf;
 		ofImage tdf_avg;
@@ -33,5 +33,6 @@ class ofApp : public ofBaseApp{
 		ofImage tdf_red;
 
 		int level;
+		float red_lev;
 		
 };

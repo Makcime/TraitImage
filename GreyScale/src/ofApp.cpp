@@ -5,9 +5,10 @@ void ofApp::setup(){
 	base_tdf.loadImage("images/tdf_1972_poster.jpg");	
 
 	level = 1;
+	red_lev = 1;
 	computeGrayScale(&tdf_eq_base , "images/tdf_1972_poster.jpg", level);
 	computeGrayScale(&tdf_eq , "images/tdf_1972_poster.jpg", level);
-	keepRed(&tdf_red, "images/tdf_1972_poster.jpg");
+	keepRed(&tdf_red, "images/tdf_1972_poster.jpg", red_lev);
 
 }
 
@@ -31,17 +32,31 @@ void ofApp::keyPressed(int key){
     	level++;
     	if (level > 255){ level = 255;}
 		computeGrayScale(&tdf_eq, "images/tdf_1972_poster.jpg", level);
+	    printf("level : %d\n", 256 / level);
         break;
     case OF_KEY_DOWN:
     	level--;
     	if (level < 1){ level = 1;}
 		computeGrayScale(&tdf_eq, "images/tdf_1972_poster.jpg", level);
+	    printf("level : %d\n", 256 / level);
         break;
+    case OF_KEY_RIGHT:
+    	red_lev+=0.1;
+    	if (level > 255){ level = 255;}
+		keepRed(&tdf_red, "images/tdf_1972_poster.jpg", red_lev);
+        break;
+    case OF_KEY_LEFT:
+    	red_lev-=0.1;
+    	if (level < 1){ level = 1;}
+		keepRed(&tdf_red, "images/tdf_1972_poster.jpg", red_lev);
+        break;
+    
     default:
         break;
+
+
     }
 
-    printf("level : %d\n", 256 / level);
 }
 
 //--------------------------------------------------------------
@@ -120,7 +135,7 @@ void ofApp::computeGrayScale( ofImage *img, char * path, int lev){
 	img->update();
 }
 
-void ofApp::keepRed(ofImage *img, char * path){
+void ofApp::keepRed(ofImage *img, char * path, float t){
 	img->loadImage(path);	
 	// tdf.setImageType(OF_IMAGE_GRAYSCALE);   // now I am grayscale;
 
@@ -141,7 +156,7 @@ void ofApp::keepRed(ofImage *img, char * path){
 	        int eq = 0.299 * red + 0.587 * green + 0.114 * blue;
 
 
-	        if (!(red / 2 > green && red / 2 > blue)){
+	        if (!((float)red > (float)green * t && (float)red > (float)blue * t)){
 	        	//Set red 
 	        	data[ index + RED] = eq ;
 	        	//Set green 
