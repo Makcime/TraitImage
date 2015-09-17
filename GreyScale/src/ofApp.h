@@ -23,7 +23,12 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		void computeGrayScale(ofImage *img, char * path, int lev);
+
 		ofImage tdf_avg;
 		ofImage tdf_eq;
+		ofImage tdf_eq_base;
+
+		int level;
 		
 };
