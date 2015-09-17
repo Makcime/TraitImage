@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	tdf.loadImage("images/tdf_1972_poster.jpg");	
+	tdf.setImageType(OF_IMAGE_GRAYSCALE);   // now I am grayscale;
 }
 
 //--------------------------------------------------------------
