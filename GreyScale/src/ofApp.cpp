@@ -140,13 +140,15 @@ void ofApp::keepRed(ofImage *img, char * path){
 
 	        int eq = 0.299 * red + 0.587 * green + 0.114 * blue;
 
-	        //Set red 
-	        data[ index + RED] = red ;
-	        //Set green 
-	        data[ index + GREEN ] = eq;
-	        //Set blue 
-	        data[ index + BLUE] = eq;
 
+	        if (!(red / 2 > green && red / 2 > blue)){
+	        	//Set red 
+	        	data[ index + RED] = eq ;
+	        	//Set green 
+	        	data[ index + GREEN ] = eq;
+	        	//Set blue 
+	        	data[ index + BLUE] = eq;
+	        }
 	    }
 	}
 	//Calling img.update() to apply changes
