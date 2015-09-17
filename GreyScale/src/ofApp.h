@@ -24,11 +24,13 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		void computeGrayScale(ofImage *img, char * path, int lev);
+		void keepRed(ofImage *img, char * path);
 
 		ofImage base_tdf;
 		ofImage tdf_avg;
 		ofImage tdf_eq;
 		ofImage tdf_eq_base;
+		ofImage tdf_red;
 
 		int level;
 		
