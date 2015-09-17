@@ -2,40 +2,66 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	tdf.loadImage("images/tdf_1972_poster.jpg");	
+	tdf_avg.loadImage("images/tdf_1972_poster.jpg");	
 	// tdf.setImageType(OF_IMAGE_GRAYSCALE);   // now I am grayscale;
 
 	//Getting pointer to pixel array of tdf
-	unsigned char *data = tdf.getPixels();
+	unsigned char *data = tdf_avg.getPixels();
 	//Calculate number of pixel components
-	int components = tdf.bpp / 8;
+	int components = tdf_avg.bpp / 8;
 	//Modify pixel array
-	for (int y=0; y<tdf.height; y++) {
-	    for (int x=0; x<tdf.width; x++) {
+	for (int y=0; y<tdf_avg.height; y++) {
+	    for (int x=0; x<tdf_avg.width; x++) {
 
 	        //Read pixel (x,y) color components
-	        int index = components * (x + tdf.width * y);
+	        int index = components * (x + tdf_avg.width * y);
 	        int red = data[ index ];
 	        int green = data[ index + 1 ];
 	        int blue = data[ index + 2 ];
 
 	        int avg = (red + green + blue ) / 3;
 
-	        int e = 0.299 * red + 0.587 * green + 0.114 * blue;
+	        //Set red 
+	        data[ index + RED] = avg ;
+	        //Set green 
+	        data[ index + GREEN ] = avg;
+	        //Set blue 
+	        data[ index + BLUE] = avg;
+	    }
+	}
+	//Calling tdf_avg.update() to apply changes
+	tdf_avg.update();
+
+	tdf_eq.loadImage("images/tdf_1972_poster.jpg");	
+	// tdf.setImageType(OF_IMAGE_GRAYSCALE);   // now I am grayscale;
+
+	//Getting pointer to pixel array of tdf
+	data = tdf_eq.getPixels();
+	//Calculate number of pixel components
+	components = tdf_eq.bpp / 8;
+	//Modify pixel array
+	for (int y=0; y<tdf_eq.height; y++) {
+	    for (int x=0; x<tdf_eq.width; x++) {
+
+	        //Read pixel (x,y) color components
+	        int index = components * (x + tdf_eq.width * y);
+	        int red = data[ index ];
+	        int green = data[ index + 1 ];
+	        int blue = data[ index + 2 ];
+
+	        int eq = 0.299 * red + 0.587 * green + 0.114 * blue;
 
 	        //Set red 
-	        data[ index + RED] = e ;
+	        data[ index + RED] = eq ;
 	        //Set green 
-	        data[ index + GREEN ] = e;
+	        data[ index + GREEN ] = eq;
 	        //Set blue 
-	        data[ index + BLUE] = e;
-
-
+	        data[ index + BLUE] = eq;
 
 	    }
 	}
-	//Calling tdf.update() to apply changes
-	tdf.update();
+	//Calling tdf_eq.update() to apply changes
+	tdf_eq.update();
 }
 
 //--------------------------------------------------------------
@@ -45,7 +71,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	tdf.draw(0, 0);
+	tdf_avg.draw(0, 0);
+	tdf_eq.draw(400, 0);
 }
 
 //--------------------------------------------------------------

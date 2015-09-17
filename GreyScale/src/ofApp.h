@@ -23,6 +23,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		ofImage tdf;
+		ofImage tdf_avg;
+		ofImage tdf_eq;
 		
 };
