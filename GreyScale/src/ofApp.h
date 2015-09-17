@@ -25,6 +25,7 @@ class ofApp : public ofBaseApp{
 
 		void computeGrayScale(ofImage *img, char * path, int lev);
 
+		ofImage base_tdf;
 		ofImage tdf_avg;
 		ofImage tdf_eq;
 		ofImage tdf_eq_base;

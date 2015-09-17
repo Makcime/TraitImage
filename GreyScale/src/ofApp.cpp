@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	base_tdf.loadImage("images/tdf_1972_poster.jpg");	
 
 	level = 1;
 	computeGrayScale(&tdf_eq_base , "images/tdf_1972_poster.jpg", level);
@@ -16,8 +17,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	tdf_eq_base.draw(0, 0);
-	tdf_eq.draw(400, 0);
+	base_tdf.draw(0, 0);
+	tdf_eq_base.draw(400, 0);
+	tdf_eq.draw(800, 0);
 }
 
 //--------------------------------------------------------------
