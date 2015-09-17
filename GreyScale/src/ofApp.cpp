@@ -21,12 +21,16 @@ void ofApp::setup(){
 
 	        int avg = (red + green + blue ) / 3;
 
+	        int e = 0.299 * red + 0.587 * green + 0.114 * blue;
+
 	        //Set red 
-	        data[ index + RED] = avg ;
+	        data[ index + RED] = e ;
 	        //Set green 
-	        data[ index + GREEN ] = avg;
+	        data[ index + GREEN ] = e;
 	        //Set blue 
-	        data[ index + BLUE] = avg;
+	        data[ index + BLUE] = e;
+
+
 
 	    }
 	}
