@@ -18,9 +18,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		void getPixInfo(int _x, int _y);
 
 		ofImage base_tdf;
 
-		int x_pos, y_pos;
+		int x_pos, y_pos, pix_red, pix_green, pix_blue;
 		
 };
