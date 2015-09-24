@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	base_tdf.loadImage("images/tdf_1972_poster.jpg");	
 
 }
 
@@ -12,6 +13,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	base_tdf.draw(0, 0);
 
 }
 
