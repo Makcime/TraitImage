@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	gui.setup(); // most of the time you don't need a name
-	gui.add(Tresh.setup( "radius", 128, 0, 255 ));
+	gui.add(Tresh.setup( "Treshold", 128, 0, 255 ));
 	computeGrayScale(&base_tdf, "images/tdf_1972_poster.jpg", 1);
 	computeBinarization(&base_tdf, Tresh);
 
