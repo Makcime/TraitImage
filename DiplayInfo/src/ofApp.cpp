@@ -41,7 +41,7 @@ void ofApp::mouseMoved(int x, int y ){
 	x_pos = x;
 	y_pos = y;
 
-	if (x > base_tdf.width | y > base_tdf.height){
+	if (x > base_tdf.width || y > base_tdf.height){
 		pix_red = 0;
 		pix_green = 0;
 		pix_blue = 0;
