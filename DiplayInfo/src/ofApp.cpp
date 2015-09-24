@@ -40,10 +40,19 @@ void ofApp::keyReleased(int key){
 void ofApp::mouseMoved(int x, int y ){
 	x_pos = x;
 	y_pos = y;
-	ofColor pix_col = base_tdf.getColor(x, y);
-	pix_red = pix_col.r;
-	pix_green = pix_col.g;
-	pix_blue = pix_col.b;
+
+	if (x > base_tdf.width | y > base_tdf.height){
+		pix_red = 0;
+		pix_green = 0;
+		pix_blue = 0;
+	}
+	else{
+		ofColor pix_col = base_tdf.getColor(x, y);
+		pix_red = pix_col.r;
+		pix_green = pix_col.g;
+		pix_blue = pix_col.b;
+
+	}
 }
 
 //--------------------------------------------------------------
