@@ -18,5 +18,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		ofImage base_tdf;
+		ofImage crop_tdf;
+		ofImage crop_resize_tdf;
+
 		
 };
