@@ -2,7 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	base_tdf.loadImage("images/tdf_1972_poster.jpg");	
+	base_tdf.loadImage("images/tdf_1972_poster.jpg");
+	x_pos = y_pos = 0;
 
 }
 
@@ -14,7 +15,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	base_tdf.draw(0, 0);
-
+    ofDrawBitmapString("X : " + ofToString(x_pos), 10,520);  
+    ofDrawBitmapString("Y : " + ofToString(y_pos), 10,540);  
 }
 
 //--------------------------------------------------------------
@@ -29,6 +31,8 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
+	x_pos = x;
+	y_pos = y;
 
 }
 

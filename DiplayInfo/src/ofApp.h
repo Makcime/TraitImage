@@ -20,6 +20,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		ofImage base_tdf;
-		
+
+		int x_pos, y_pos;
 		
 };
