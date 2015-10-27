@@ -50,5 +50,7 @@ class ofApp : public ofBaseApp{
 			"SAT",
 			"HUE"
         };
+
+        int pos_x, start_y;
 		
 };

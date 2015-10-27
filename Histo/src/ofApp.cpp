@@ -18,8 +18,14 @@ void ofApp::setup(){
     
 	// changed order slightly to work better for mapping
     // asciiCharacters =  string("  ..,,,'''``--_:;^^**""=+<>iv%&xclrs)/){}I?!][1taeo7zjLunT#@JCwfy325Fp6mqSghVd4EgXPGZbYkOA8U$KHDBWNMR0Q");
+    
+    pos_x = camWidth + 10;
+    start_y = camHeight;
 	
     ofEnableAlphaBlending();
+
+
+
 }
 
 //--------------------------------------------------------------
@@ -65,10 +71,7 @@ void ofApp::draw(){
     }
 
     ofSetHexColor(0xffffff);
-    int pos_x, start_y, end_y;
-
-    pos_x = camWidth + 10;
-    start_y = camHeight;
+    int  end_y;
 
     for (std::vector<histoData>::iterator i = histDat.begin(); i != histDat.end(); ++i){
     	// cout << (*i).R << "-" ;
@@ -97,15 +100,16 @@ void ofApp::draw(){
     }
     histDat.clear();
 
+    int pos_x_ = pos_x;
 
     for (int i = 0; i < 255; ++i){
     	// cout << histo[i] << endl;
     	end_y = start_y - (histo[i]/50);
-    	pos_x++;
-    	ofLine(pos_x++, start_y, pos_x, end_y);
+    	pos_x_++;
+    	ofLine(pos_x_++, start_y, pos_x_, end_y);
     }
 
-    font.drawString(histoString[histoType], pos_x, start_y);
+    font.drawString(histoString[histoType], pos_x_, start_y);
 
 
 }
@@ -139,6 +143,10 @@ void ofApp::keyReleased(int key){
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
 
+	if(x && x < ofGetWidth() && y && y < ofGetHeight()){
+	    pos_x = x;
+	    start_y = y;
+	}
 }
 
 //--------------------------------------------------------------
@@ -148,6 +156,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+
 
 }
 
