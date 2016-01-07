@@ -45,6 +45,7 @@ void ofApp::keyPressed(int key){
     	red_lev+=0.1;
     	if (level > 255){ level = 255;}
 		keepRed(&tdf_red, "images/tdf_1972_poster.jpg", red_lev);
+	    printf("red_level : %f\n", red_lev);
         break;
     case OF_KEY_LEFT:
     	red_lev-=0.1;
