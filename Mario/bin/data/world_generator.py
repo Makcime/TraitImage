@@ -1,6 +1,17 @@
 import xml.etree.ElementTree as ET
 from sys import argv
-from random import randrange
+from random import randrange, randint
+
+from csv import reader
+
+bricks = [
+"yellow.png",
+"red.png",
+"green.png",
+"blue.png",
+"brown.png",
+"black.png"
+]
 
 class Tile():
 	"""Define a tile IN THE MAP"""
@@ -20,7 +31,7 @@ class MapGenerator():
 	
 	def __init__(self, x_len = 212):
 		self.x_len = x_len
-		self.y_len = 18 # keep this value constant$
+		self.y_len = 22 # keep this value constant$
 		self.s_floor = (self.y_len - 3) # keep this value constant$
 		self.area = self.x_len * self.y_len
 
@@ -91,10 +102,15 @@ class MapGenerator():
 		'''
 		generate a basi world with only a floor 
 		'''
-		floor = Tile(1, 'ground_001.png')
+		# floor = Tile(1, 'ground_001.png')
+		floor = Tile(1, 'brown.png')
 
 		# self.coverArea	(tile = floor, s_pos = (self.y_len - 3) * self.x_len, _x = self.x_len, _y = 3)
-		self.coverArea	(tile = floor, s_x = 0, s_y = self.s_floor , _x = self.x_len, _y = 3)
+		# self.coverArea	(tile = bricks[randint(0, len(bricks))], s_x = 0, s_y = self.s_floor , _x = self.x_len, _y = 3)
+
+		for y in range(3):
+			for x in range(self.x_len):
+				self.ltiles[self.position(0 + x, self.s_floor + y)] = Tile(1, bricks[randint(0, len(bricks) -1 )])
 
 		self.addCastle(self.x_len - 10)
 		self.addFlag(self.x_len - 13, 10)
@@ -193,6 +209,13 @@ class MapGenerator():
 			else:
 				self.addBigBush(randrange(self.x_len - 3))
 
+	def randHoles(self):
+		for i in range(self.x_len/20):
+			self.addHole(randrange(5) ,randrange(self.x_len - 10))
+
+	def addTile(self, x_pos, y_pos, name, state=1):
+		self.ltiles[self.position(x_pos, y_pos)] = Tile(state, name + ".png")
+
 
 
 	def addMountain(self, x_pos, big = False):
@@ -288,7 +311,8 @@ if __name__ == '__main__':
 	myMap.basicWorld()
 
 
-	pos = 0
+
+	pos = 110
 	myMap.addBush(pos)
 	pos += 7
 	myMap.addBigBush(pos)
@@ -306,14 +330,28 @@ if __name__ == '__main__':
 	myMap.addPipe(3, pos)
 	pos += 7
 	myMap.addPipe(6, pos)
+	pos += 2
+	myMap.addHallfPyramid(4, pos, False, "red.png")
+	pos += 5
+	myMap.addPipe(7, pos)
+	pos += 7
+	myMap.addPipe(8, pos)
 	pos += 7
 	myMap.addHole(2, pos)
 	pos += 7
 	myMap.addHole(3, pos)
 
-
-
-	myMap.randClouds()
+	# myMap.randHoles()
 	myMap.randMountains()
 	myMap.randBushs()
+
+	with open("world.txt") as f:
+		world = reader(f, delimiter=',')
+		for x, y, name in world:
+			s = 1
+			if name == "empty":
+				s = 0
+			myMap.addTile(int(x), int(y), name, s)
+
+	myMap.randClouds()
 	myMap.Generate()

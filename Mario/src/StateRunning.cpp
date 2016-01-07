@@ -64,7 +64,7 @@ void StateRunning::setup(StateManager* manager)
 	if(bgSound != "") {
 		assets->getSound(bgSound)->play();
 	}
-
+	
 	scroll1.set(0, 0, 0);
 	scroll2.set(0, 0, 0);
 
@@ -183,7 +183,7 @@ void StateRunning::draw()
 
 	// draw player two in the front:
 	player1->draw(assets);
-	// player2->draw(assets);
+	player2->draw(assets);
 
 	for(list<Monster*>::iterator it = monsters.begin();
 		it != monsters.end(); it++) {
@@ -214,7 +214,7 @@ void StateRunning::keyPressed(ofKeyEventArgs & _args)
 	keyHandle(true, key);
 
 	switch(key) {
-		case 'q':
+		case OF_KEY_DEL:
 			changeState(_manager, new StateEnd());
 			break;
 	}
