@@ -4,7 +4,8 @@
 void ofApp::setup(){
 	gui.setup(); // most of the time you don't need a name
 	gui.add(Tresh.setup( "Treshold", 128, 0, 255 ));
-	computeGrayScale(&base_tdf, "images/tdf_1972_poster.jpg", 1);
+	// computeGrayScale(&base_tdf, "images/tdf_1972_poster.jpg", 1);
+	computeGrayScale(&base_tdf, "images/test.jpg", 1);
 	computeBinarization(&base_tdf, Tresh);
 
 
@@ -18,7 +19,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	gui.draw();
-	computeGrayScale(&base_tdf, "images/tdf_1972_poster.jpg", 1);
+	// computeGrayScale(&base_tdf, "images/tdf_1972_poster.jpg", 1);
+	computeGrayScale(&base_tdf, "images/test.jpg", 1);
 	computeBinarization(&base_tdf, Tresh);
 	base_tdf.draw(350, 0);
 }
@@ -70,7 +72,8 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::computeGrayScale( ofImage *img, char * path, int lev){
-	img->loadImage(path);	
+	img->loadImage(path);
+	img->resize(img->width / 2, img->height / 2);	
 	// tdf.setImageType(OF_IMAGE_GRAYSCALE);   // now I am grayscale;
 
 	//Getting pointer to pixel array of tdf
